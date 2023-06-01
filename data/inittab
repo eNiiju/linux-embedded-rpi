@@ -1,0 +1,15 @@
+# Login prompt for tty1-tty5
+tty1::respawn:/sbin/getty 38400 tty1
+tty2::respawn:/sbin/getty 38400 tty2
+tty3::respawn:/sbin/getty 38400 tty3
+tty4::respawn:/sbin/getty 38400 tty4
+tty5::respawn:/sbin/getty 38400 tty5
+
+# Root access only for tty6
+tty6::askfirst:-/bin/sh
+
+# Serial console
+ttyAMA0::respawn:/bin/sh
+
+# Run the /etc/init.d/rcS script when starting up
+::sysinit:/etc/init.d/rcS

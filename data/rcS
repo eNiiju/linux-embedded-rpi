@@ -1,0 +1,30 @@
+#! /bin/sh
+
+# Script invoqué au démarrage du système.
+
+# Mount proc and sys (mount -t <type> <device> <point_de_montage>)
+mount none /proc -t proc
+mount none /sys  -t sysfs
+
+# Mount devpts for pseudo-terminals
+mkdir -p /dev/pts
+mount -t devpts devpts /dev/pts
+
+# Remount / in read-write mode
+mount / -o remount,rw
+
+/sbin/mdev -s
+echo /sbin/mdev > /proc/sys/kernel/hotplug
+
+# Configure the keyboard in french
+loadkmap < /etc/azerty.kmap
+
+# Start HTTP server
+httpd -h /var/www/html
+
+# Start SSH server
+dropbear -ER
+
+# Retrieve the IP address with DHCP
+sleep 5 # AFTER A 5 SECOND DELAY
+udhcpc -i eth0
