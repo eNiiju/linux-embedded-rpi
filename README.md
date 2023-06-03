@@ -1,69 +1,69 @@
 # Introduction
 
-Ce module a pour but de créer un système Linux embarqué pour Raspberry Pi.
+This project aims to create an embedded Linux system for Raspberry Pi.
 
-# Structure des fichiers
+# Work directory structure
 
 ```
 WORKDIR/
-├─ build/ (Contient les sources compilées)
-├─ data/ (Données à copier, nécessaires au script)
-│ ├─ boot_rpi/ (Fichiers à copier dans le répertoire boot de la carte SD)
-│ ├─ configs_busybox/ (Fichiers de configuration de busybox sauvegardés)
-│ ├─ images/ (Images de test pour le framebuffer)
-| ├─ makefiles/ (Makefiles qui seront recopiés dans certains dossiers des sources)
+├─ build/ (Compiled sources)
+├─ data/ (Data to copy, needed by the script)
+│ ├─ boot_rpi/ (Files to copy to SD card boot directory)
+│ ├─ configs_busybox/ (Saved busybox configuration files)
+│ ├─ images/ (Framebuffer test images)
+| ├─ makefiles/ (Makefiles which will be copied in some source folders)
 │ ├─ azerty.kmap
 │ ├─ inittab
 │ ├─ rcS
 ├─ docs/ (Documentation)
-├─ logs/ (Logs des installations, créé par le script)
+├─ logs/ (Installation logs, created by the script)
 ├─ src/ (Sources)
-│ ├─ fbv/ (Sources de/pour fbv)
-│ | ├─ fbv-master.zip (Sources de fbv)
-│ | ├─ jpegsrc.v9e.tar.gz (Sources de lib jpeg)
-│ | ├─ libpng-x.x.x.tar.gz (Sources de lib png)
-│ | ├─ zlib-x.x.x.tar.gz (Sources de lib z)
-│ ├─ hello_world/ (Programme de test de compilation croisée)
-| ├─ ncurses/ (Sources de/pour ncurses)
-│ | ├─ ncurses-x.x.tar.gz (Sources de ncurses)
-│ | ├─ ncurses-examples.tar.gz (Exemples de ncurses)
-│ | ├─ ncurses_programs.tar.gz (Programmes de test de ncurses)
-│ | ├─ hello_ncurses/ (Programme "Hello World" de test de ncurses)
-│ ├─ busybox-x.x.x.tar.bz2 (Archive des sources de busybox)
-│ ├─ tools-master.zip (Outils de compilation croisée)
-│ ├─ dropbear-xxxx.x.tar.bz2 (Archive des sources de dropbear)
-├─ targets/ (Cibles pour la compilation)
-├─ mk_env.sh (Script de création de l'environnement de compilation)
+│ ├─ fbv/
+│ | ├─ fbv-master.zip (FBV sources)
+│ | ├─ jpegsrc.v9e.tar.gz (JPEG lib sources)
+│ | ├─ libpng-x.x.x.tar.gz (PNG lib sources)
+│ | ├─ zlib-x.x.x.tar.gz (Zlib lib sources)
+│ ├─ hello_world/ (Cross-compilation test program)
+| ├─ ncurses/
+│ | ├─ ncurses-x.x.tar.gz (Ncurses sources)
+│ | ├─ ncurses-examples.tar.gz
+│ | ├─ ncurses_programs.tar.gz
+│ | ├─ hello_ncurses/ (Ncurses test program)
+│ ├─ busybox-x.x.x.tar.bz2 (Busybox sources)
+│ ├─ tools-master.zip (Cross-compilation tools)
+│ ├─ dropbear-xxxx.x.tar.bz2 (Dropbear sources)
+├─ targets/ (Cross-compilation targets)
+├─ mk_env.sh (Build environment creation script)
 ├─ script.sh
 ```
 
-# Utilisation
+# Usage
 
-## Prérequis
+## Prerequisites
 
-Dans le répertoire data :
-- Dossier `boot_rpi` contient les fichiers à copier dans le répertoire boot de la carte SD
-- Dossier `configs_busybox` contient les fichiers de configuration de busybox sauvegardés
-- Dossier `images` contient les images de test pour le framebuffer
-- Dossier `makefiles` contient les makefiles qui seront recopiés dans certains dossiers des sources
-- Fichier `azerty.kmap` contenant la configuration du clavier
-- Script `inittab` contenant la configuration de l'init
-- Script `rcS` exécuté au démarrage
+In the data directory:
+- `boot_rpi` folder containing the files to be copied in the boot directory of the SD card
+- `configs_busybox` folder containing saved busybox configuration files
+- `images` folder containing test images for framebuffer
+- `makefiles` folder containing the makefiles which will be copied in some sources folders
+- `azerty.kmap` file containing the keyboard layout
+- `inittab` script containing the init configuration
+- `rcS` script executed on startup
 
-## Lancement du script
+## Launching the script
 
-Le script doit être lancé depuis le dossier `WORKDIR` en tant que root.
+The script must be run from the `WORKDIR` folder as root.
 
 ```bash
 sudo ./script.sh
 ```
 
-## Utilisation du script
+## Script usage
 
-1. Dépaquetage des sources
+1. Unpacking sources
 
-2. Séléction du périphérique de stockage (carte SD)
+2. Selection of the storage device (SD card)
 
-3. Séléction du fichier de configuration de busybox (ou d'abord modification du fichier de configuration puis enregistrement de la configuration)
+3. Selecting the busybox configuration file (or first modifying the configuration file then saving it)
 
-4. Installation étape par étape ou installation rapide
+4. Step-by-step installation or quick installation

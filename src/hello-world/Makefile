@@ -1,7 +1,7 @@
 CFLAGS=-Wall -Wextra -Wno-unused-parameter
 
 all:
-	echo "Choisir hello_pc ou hello_pi"
+	echo "Choose hello_pc ou hello_pi"
 
 clean:
 	rm -f hello_pc hello_pi

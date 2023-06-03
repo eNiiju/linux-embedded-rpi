@@ -1,39 +1,40 @@
 #! /bin/bash 
 
-# Ce script doit être exécuté en tant que root, depuis le dossier
-# contenant le fichier du script (WORKDIR). Necessite une carte SD
-# connectée à l'ordinateur afin d'y installer le système.
+# This script must be run as root, from the folder
+# containing the script file (WORKDIR). Requires an SD card
+# connected to the computer in order to install the system on it.
 #
-# Arborescence du projet :
+# Work directory structure :
 #
 # WORKDIR/
-# ├─ build/ (Contient les sources compilées, créé par le script)
-# ├─ data/ (Données à copier, nécessaires au script)
-# │ ├─ boot_rpi/ (Fichiers à copier dans le répertoire boot de la carte SD)
-# │ ├─ configs_busybox/ (Fichiers de configuration de busybox sauvegardés)
-# │ ├─ images/ (Images de test pour le framebuffer)
-# | ├─ makefiles/ (Makefiles qui seront recopiés dans certains dossiers des sources)
+# ├─ build/ (Compiled sources)
+# ├─ data/ (Data to copy, needed by the script)
+# │ ├─ boot_rpi/ (Files to copy to SD card boot directory)
+# │ ├─ configs_busybox/ (Saved busybox configuration files)
+# │ ├─ images/ (Framebuffer test images)
+# | ├─ makefiles/ (Makefiles which will be copied in some source folders)
 # │ ├─ azerty.kmap
 # │ ├─ inittab
 # │ ├─ rcS
-# ├─ logs/ (Logs des installations, créé par le script)
+# ├─ docs/ (Documentation)
+# ├─ logs/ (Installation logs, created by the script)
 # ├─ src/ (Sources)
-# │ ├─ fbv/ (Sources de/pour fbv)
-# │ | ├─ fbv-master.zip (Sources de fbv)
-# │ | ├─ jpegsrc.v9e.tar.gz (Sources de lib jpeg)
-# │ | ├─ libpng-x.x.x.tar.gz (Sources de lib png)
-# │ | ├─ zlib-x.x.x.tar.gz (Sources de lib z)
-# │ ├─ hello_world/ (Programme de test de compilation croisée)
-# | ├─ ncurses/ (Sources de/pour ncurses)
-# │ | ├─ ncurses-x.x.tar.gz (Sources de ncurses)
-# │ | ├─ ncurses-examples.tar.gz (Exemples de ncurses)
-# │ | ├─ ncurses_programs.tar.gz (Programmes de test de ncurses)
-# │ | ├─ hello_ncurses/ (Programme "Hello World" de test de ncurses)
-# │ ├─ busybox-x.x.x.tar.bz2 (Archive des sources de busybox)
-# │ ├─ tools-master.zip (Outils de compilation croisée)
-# │ ├─ dropbear-xxxx.x.tar.bz2 (Archive des sources de dropbear)
-# ├─ targets/ (Cibles pour la compilation, créé par le script)
-# ├─ mk_env.sh (Script de création de l'environnement de compilation)
+# │ ├─ fbv/
+# │ | ├─ fbv-master.zip (FBV sources)
+# │ | ├─ jpegsrc.v9e.tar.gz (JPEG lib sources)
+# │ | ├─ libpng-x.x.x.tar.gz (PNG lib sources)
+# │ | ├─ zlib-x.x.x.tar.gz (Zlib lib sources)
+# │ ├─ hello_world/ (Cross-compilation test program)
+# | ├─ ncurses/
+# │ | ├─ ncurses-x.x.tar.gz (Ncurses sources)
+# │ | ├─ ncurses-examples.tar.gz
+# │ | ├─ ncurses_programs.tar.gz
+# │ | ├─ hello_ncurses/ (Ncurses test program)
+# │ ├─ busybox-x.x.x.tar.bz2 (Busybox sources)
+# │ ├─ tools-master.zip (Cross-compilation tools)
+# │ ├─ dropbear-xxxx.x.tar.bz2 (Dropbear sources)
+# ├─ targets/ (Cross-compilation targets)
+# ├─ mk_env.sh (Build environment creation script)
 # ├─ script.sh
 
 # --------------------------------------------------------------------------- #
